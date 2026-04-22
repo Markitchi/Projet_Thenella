@@ -11,8 +11,8 @@
             <td>{{ item.name }}</td><td>{{ item.email }}</td><td>{{ item.phone or '—' }}</td><td>{{ item.event_type }}</td>
             <td>{{ item.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
             <td>
-                {% if not item.is_read %}<form method="POST" action="{{ url_for('admin.booking_read', id=item.id) }}" style="display:inline;"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn-sm btn-success" title="Mark as read"><i class="fas fa-check"></i></button></form>{% endif %}
-                <form method="POST" action="{{ url_for('admin.booking_delete', id=item.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button></form>
+                {% if not item.is_read %}<form method="POST" action="{{ url_for('admin.booking_read', id=item.id) }}" style="display:inline;"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit" class="btn-sm btn-success" title="Mark as read"><i class="fas fa-check"></i></button></form>{% endif %}
+                <form method="POST" action="{{ url_for('admin.booking_delete', id=item.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit" class="btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button></form>
             </td>
         </tr>
         {% if item.message %}<tr><td colspan="7" style="padding-left:40px; color:var(--text-light); font-style:italic; border-bottom: 2px solid #eee;">{{ item.message }}</td></tr>{% endif %}

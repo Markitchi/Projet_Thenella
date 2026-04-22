@@ -8,7 +8,7 @@
         {% for item in items %}
         <tr><td><i class="{{ item.icon }}" style="font-size:1.3rem; color: var(--secondary);"></i></td><td>{{ item.title_en }}</td><td>{{ item.title_fr }}</td><td>{{ item.sort_order }}</td>
             <td><a href="{{ url_for('admin.achievement_edit', id=item.id) }}" class="btn-sm btn-outline-sm"><i class="fas fa-edit"></i></a>
-            <form method="POST" action="{{ url_for('admin.achievement_delete', id=item.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn-sm btn-danger"><i class="fas fa-trash"></i></button></form></td></tr>
+            <form method="POST" action="{{ url_for('admin.achievement_delete', id=item.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit" class="btn-sm btn-danger"><i class="fas fa-trash"></i></button></form></td></tr>
         {% endfor %}
     </tbody></table>
     {% else %}<div class="empty-state"><i class="fas fa-trophy"></i><p>No achievements yet</p></div>{% endif %}
