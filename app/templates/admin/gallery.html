@@ -9,7 +9,7 @@
         <tr><td><img src="{{ url_for('static', filename='uploads/' + item.image) }}" style="width:80px; height:50px; object-fit:cover; border-radius:6px;"></td>
             <td>{{ item.caption_en }}</td><td>{{ item.caption_fr }}</td><td>{{ item.sort_order }}</td>
             <td><a href="{{ url_for('admin.gallery_edit', id=item.id) }}" class="btn-sm btn-outline-sm"><i class="fas fa-edit"></i></a>
-            <form method="POST" action="{{ url_for('admin.gallery_delete', id=item.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')"><button class="btn-sm btn-danger"><i class="fas fa-trash"></i></button></form></td></tr>
+            <form method="POST" action="{{ url_for('admin.gallery_delete', id=item.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn-sm btn-danger"><i class="fas fa-trash"></i></button></form></td></tr>
         {% endfor %}
     </tbody></table>
     {% else %}<div class="empty-state"><i class="fas fa-images"></i><p>No gallery images yet</p></div>{% endif %}
