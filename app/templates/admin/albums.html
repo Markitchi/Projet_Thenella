@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% block title %}Discography{% endblock %}
+{% block admin_content %}
+<div class="top-bar"><h1><i class="fas fa-compact-disc"></i> Discography</h1><div class="top-bar-actions"><a href="{{ url_for('admin.album_add') }}" class="btn-sm btn-primary"><i class="fas fa-plus"></i> Add Album</a></div></div>
+<div class="card">
+    {% if items %}
+    <table><thead><tr><th>Cover</th><th>Title</th><th>Year</th><th>Order</th><th>Actions</th></tr></thead><tbody>
+        {% for item in items %}
+        <tr><td>{% if item.cover_image %}<img src="{{ url_for('static', filename='uploads/' + item.cover_image) }}" style="width:50px; height:50px; object-fit:cover; border-radius:6px;">{% endif %}</td>
+            <td>{{ item.title }}</td><td>{{ item.year }}</td><td>{{ item.sort_order }}</td>
+            <td><a href="{{ url_for('admin.album_edit', id=item.id) }}" class="btn-sm btn-outline-sm"><i class="fas fa-edit"></i></a>
+            <form method="POST" action="{{ url_for('admin.album_delete', id=item.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')"><button class="btn-sm btn-danger"><i class="fas fa-trash"></i></button></form></td></tr>
+        {% endfor %}
+    </tbody></table>
+    {% else %}<div class="empty-state"><i class="fas fa-compact-disc"></i><p>No albums yet</p></div>{% endif %}
+</div>
+{% endblock %}

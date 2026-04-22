@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% block title %}Gallery{% endblock %}
+{% block admin_content %}
+<div class="top-bar"><h1><i class="fas fa-images"></i> Gallery</h1><div class="top-bar-actions"><a href="{{ url_for('admin.gallery_add') }}" class="btn-sm btn-primary"><i class="fas fa-plus"></i> Add Image</a></div></div>
+<div class="card">
+    {% if items %}
+    <table><thead><tr><th>Image</th><th>Caption (EN)</th><th>Caption (FR)</th><th>Order</th><th>Actions</th></tr></thead><tbody>
+        {% for item in items %}
+        <tr><td><img src="{{ url_for('static', filename='uploads/' + item.image) }}" style="width:80px; height:50px; object-fit:cover; border-radius:6px;"></td>
+            <td>{{ item.caption_en }}</td><td>{{ item.caption_fr }}</td><td>{{ item.sort_order }}</td>
+            <td><a href="{{ url_for('admin.gallery_edit', id=item.id) }}" class="btn-sm btn-outline-sm"><i class="fas fa-edit"></i></a>
+            <form method="POST" action="{{ url_for('admin.gallery_delete', id=item.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')"><button class="btn-sm btn-danger"><i class="fas fa-trash"></i></button></form></td></tr>
+        {% endfor %}
+    </tbody></table>
+    {% else %}<div class="empty-state"><i class="fas fa-images"></i><p>No gallery images yet</p></div>{% endif %}
+</div>
+{% endblock %}

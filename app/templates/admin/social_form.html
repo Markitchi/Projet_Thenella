@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block admin_content %}
+<div class="top-bar"><h1>{{ title }}</h1><div class="top-bar-actions"><a href="{{ url_for('admin.socials') }}"><i class="fas fa-arrow-left"></i> Back</a></div></div>
+<div class="card">
+    <form method="POST" class="admin-form">
+        {{ form.hidden_tag() }}
+        <div class="form-row">
+            <div><label>Platform</label>{{ form.platform() }}</div>
+            <div><label>Icon Class</label>{{ form.icon() }}</div>
+        </div>
+        <div class="form-row">
+            <div><label>Color</label>{{ form.color() }}</div>
+            <div><label>Sort Order</label>{{ form.sort_order() }}</div>
+        </div>
+        <div class="form-row">
+            <div><label>Description (EN)</label>{{ form.description_en() }}</div>
+            <div><label>Description (FR)</label>{{ form.description_fr() }}</div>
+        </div>
+        <button type="submit" class="btn-sm btn-primary"><i class="fas fa-save"></i> Save</button>
+    </form>
+</div>
+<div class="card" style="margin-top:20px;">
+    <h3>Current Links</h3>
+    {% if item.links %}
+    <table><thead><tr><th>Icon</th><th>Label (EN)</th><th>Label (FR)</th><th>URL</th></tr></thead><tbody>
+        {% for link in item.links %}
+        <tr><td><i class="{{ link.icon }} song-icon"></i></td><td>{{ link.label_en }}</td><td>{{ link.label_fr }}</td><td><a href="{{ link.url }}" target="_blank" style="color:var(--primary);">{{ link.url[:40] }}...</a></td></tr>
+        {% endfor %}
+    </tbody></table>
+    {% else %}<p style="color:var(--text-light);">No links configured</p>{% endif %}
+</div>
+{% endblock %}

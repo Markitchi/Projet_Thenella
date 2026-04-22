@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+{% block title %}Social Accounts{% endblock %}
+{% block admin_content %}
+<div class="top-bar"><h1><i class="fas fa-share-alt"></i> Social Accounts</h1></div>
+<div class="card">
+    {% if items %}
+    <table><thead><tr><th>Platform</th><th>Icon</th><th>Description (EN)</th><th>Links</th><th>Actions</th></tr></thead><tbody>
+        {% for item in items %}
+        <tr><td><i class="{{ item.icon }}" style="color: {{ item.color }}; font-size:1.3rem;"></i> {{ item.platform|title }}</td>
+            <td>{{ item.icon }}</td><td>{{ item.description_en[:40] }}...</td><td>{{ item.links|length }} links</td>
+            <td><a href="{{ url_for('admin.social_edit', id=item.id) }}" class="btn-sm btn-outline-sm"><i class="fas fa-edit"></i></a></td></tr>
+        {% endfor %}
+    </tbody></table>
+    {% else %}<div class="empty-state"><i class="fas fa-share-alt"></i><p>No social accounts</p></div>{% endif %}
+</div>
+{% endblock %}

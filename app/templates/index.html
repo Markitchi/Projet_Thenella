@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+{% block content %}
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">THEN<span>ELLA</span></a>
+                <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">{{ 'Accueil' if lang == 'fr' else 'Home' }}</a></li>
+                    <li><a href="#biography">{{ 'Biographie' if lang == 'fr' else 'Biography' }}</a></li>
+                    <li><a href="#achievements">{{ 'Réalisations' if lang == 'fr' else 'Achievements' }}</a></li>
+                    <li><a href="#music">{{ 'Musique' if lang == 'fr' else 'Music' }}</a></li>
+                    <li><a href="#media">{{ 'Galerie' if lang == 'fr' else 'Gallery' }}</a></li>
+                    <li><a href="#accounts">{{ 'Comptes' if lang == 'fr' else 'Accounts' }}</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <div class="language-switcher">
+                        <a href="{{ url_for('main.set_language', lang='en') }}" class="lang-btn {{ 'active' if lang == 'en' }}">EN</a>
+                        <a href="{{ url_for('main.set_language', lang='fr') }}" class="lang-btn {{ 'active' if lang == 'fr' }}">FR</a>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>THEN<span>ELLA</span></h1>
+            <div class="hero-divider"></div>
+            <p>{{ settings.hero_subtitle_fr if lang == 'fr' else settings.hero_subtitle_en }}</p>
+            <p>{{ settings.hero_description_fr if lang == 'fr' else settings.hero_description_en }}</p>
+            <div class="hero-btns">
+                <a href="#music" class="btn">{{ 'Écouter la Musique' if lang == 'fr' else 'Listen to Music' }}</a>
+                <a href="#contact" class="btn btn-outline" style="border-color: var(--white); color: var(--white);">{{ 'Réserver pour le Ministère' if lang == 'fr' else 'Book for Ministry' }}</a>
+            </div>
+        </div>
+        <div class="hero-portrait">
+            <img src="{{ url_for('static', filename='uploads/' + bio.image) }}" alt="THENELLA">
+        </div>
+    </section>
+
+    <!-- Biography -->
+    <section class="biography" id="biography">
+        <div class="container">
+            <div class="section-title">
+                <h2>{{ bio.section_title_fr if lang == 'fr' else bio.section_title_en }}</h2>
+            </div>
+            <div class="bio-content">
+                <div class="bio-img">
+                    <img src="{{ url_for('static', filename='uploads/' + bio.image) }}" alt="{{ bio.full_name }}">
+                </div>
+                <div class="bio-text">
+                    <h3>{{ bio.full_name }}</h3>
+                    <p>{{ bio.paragraph1_fr if lang == 'fr' else bio.paragraph1_en }}</p>
+                    {% if bio.paragraph2_en %}
+                    <p>{{ bio.paragraph2_fr if lang == 'fr' else bio.paragraph2_en }}</p>
+                    {% endif %}
+                    {% if bio.paragraph3_en %}
+                    <p>{{ bio.paragraph3_fr if lang == 'fr' else bio.paragraph3_en }}</p>
+                    {% endif %}
+                    <a href="#achievements" class="btn">{{ 'Voir Ses Réalisations' if lang == 'fr' else 'See Her Achievements' }}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="achievements" id="achievements">
+        <div class="container">
+            <div class="section-title">
+                <h2>{{ 'Réalisations & Récompenses' if lang == 'fr' else 'Achievements & Awards' }}</h2>
+            </div>
+            <div class="achievements-grid">
+                {% for item in achievements %}
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i class="{{ item.icon }}"></i></div>
+                    <h3>{{ item.title_fr if lang == 'fr' else item.title_en }}</h3>
+                    <p>{{ item.description_fr if lang == 'fr' else item.description_en }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Music / Discography -->
+    <section class="music" id="music">
+        <div class="container">
+            <div class="section-title">
+                <h2>{{ 'Discographie' if lang == 'fr' else 'Discography' }}</h2>
+            </div>
+            <div class="music-grid">
+                {% for album in albums %}
+                <div class="music-card" {% if album.audio_file %}data-audio="{{ url_for('static', filename='uploads/' + album.audio_file) }}" data-cover="{{ url_for('static', filename='uploads/' + album.cover_image) }}" data-title="{{ album.title }} ({{ album.year }})" data-listen-url="{{ album.listen_url }}"{% endif %}>
+                    <div class="music-img">
+                        <img src="{{ url_for('static', filename='uploads/' + album.cover_image) }}" alt="{{ album.title }}">
+                        {% if album.audio_file %}
+                        <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        {% endif %}
+                    </div>
+                    <div class="music-info">
+                        <h3>{{ album.title }} ({{ album.year }})</h3>
+                        <p>{{ album.description_fr if lang == 'fr' else album.description_en }}</p>
+                        {% if album.audio_file %}
+                        <a href="#" class="btn btn-play-track"><i class="fas fa-headphones"></i> {{ 'Écouter' if lang == 'fr' else 'Play' }}</a>
+                        {% elif album.listen_url %}
+                        <a href="{{ album.listen_url }}" target="_blank" class="btn"><i class="fab fa-apple"></i> {{ 'Écouter sur Apple Music' if lang == 'fr' else 'Listen on Apple Music' }}</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="media" id="media">
+        <div class="container">
+            <div class="section-title">
+                <h2>{{ 'Galerie' if lang == 'fr' else 'Gallery' }}</h2>
+            </div>
+            <div class="gallery-grid">
+                {% for img in gallery %}
+                <div class="gallery-card" onclick="openLightbox({{ loop.index0 }})">
+                    <div class="gallery-card-img">
+                        <img src="{{ url_for('static', filename='uploads/' + img.image) }}" alt="{{ img.caption_en }}">
+                    </div>
+                    <div class="gallery-card-caption">
+                        <h3>{{ img.caption_fr if lang == 'fr' else img.caption_en }}</h3>
+                    </div>
+                    <div class="gallery-zoom"><i class="fas fa-search-plus"></i></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+        <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)"><i class="fas fa-chevron-right"></i></button>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <!-- Social Media & Accounts -->
+    <section class="accounts" id="accounts">
+        <div class="container">
+            <div class="section-title">
+                <h2>{{ 'Réseaux Sociaux & Musique' if lang == 'fr' else 'Social Media & Music' }}</h2>
+            </div>
+            <div class="accounts-grid">
+                {% for social in socials %}
+                <div class="account-card {{ social.platform }}">
+                    <div class="account-icon" style="color: {{ social.color }};"><i class="{{ social.icon }}"></i></div>
+                    <h3>{{ social.platform|title }}</h3>
+                    <p>{{ social.description_fr if lang == 'fr' else social.description_en }}</p>
+                    <ul class="account-links">
+                        {% for link in social.links %}
+                        <li><a href="{{ link.url }}" target="_blank"><i class="{{ link.icon }} song-icon"></i> <span>{{ link.label_fr if lang == 'fr' else link.label_en }}</span></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Booking -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>{{ 'Contact & Réservation' if lang == 'fr' else 'Contact & Booking' }}</h2>
+            </div>
+            <div class="contact-form">
+                <form method="POST" action="{{ url_for('main.contact') }}">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        <label for="name">{{ 'Nom Complet' if lang == 'fr' else 'Full Name' }}</label>
+                        {{ form.name(id='name', class='', placeholder='') }}
+                    </div>
+                    <div class="form-group">
+                        <label for="email">{{ 'Adresse Email' if lang == 'fr' else 'Email Address' }}</label>
+                        {{ form.email(id='email', class='', placeholder='') }}
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">{{ 'Numéro de Téléphone' if lang == 'fr' else 'Phone Number' }}</label>
+                        {{ form.phone(id='phone', class='', placeholder='') }}
+                    </div>
+                    <div class="form-group">
+                        <label for="event_type">{{ "Type d'Événement" if lang == 'fr' else 'Type of Event' }}</label>
+                        {{ form.event_type(id='event_type', class='') }}
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        {{ form.message(id='message', rows='5', class='', placeholder=('Parlez-nous de votre événement...' if lang == 'fr' else 'Tell us about your event and how Thenella can minister...')) }}
+                    </div>
+                    <button type="submit" class="btn">{{ 'Envoyer la Demande de Réservation' if lang == 'fr' else 'Send Booking Request' }}</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>{{ 'Ministères THENELLA' if lang == 'fr' else 'THENELLA Ministries' }}</h3>
+                    <p>{{ 'Diffuser l\'évangile par la musique, la louange et l\'évangélisation. Basé à Douala, Cameroun.' if lang == 'fr' else 'Spreading the gospel through music, worship, and evangelism. Based in Douala, Cameroon.' }}</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/search/top?q=thenella%20gospel" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/explore/tags/thenella/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/results?search_query=Thenella+Officiel" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/search?q=thenella%20gospel" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>{{ 'Liens Rapides' if lang == 'fr' else 'Quick Links' }}</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">{{ 'Accueil' if lang == 'fr' else 'Home' }}</a></li>
+                        <li><a href="#biography">{{ 'Biographie' if lang == 'fr' else 'Biography' }}</a></li>
+                        <li><a href="#music">{{ 'Musique' if lang == 'fr' else 'Music' }}</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>{{ 'Informations de Contact' if lang == 'fr' else 'Contact Info' }}</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> {{ settings.footer_location_fr if lang == 'fr' else settings.footer_location_en }}</li>
+                        <li><i class="fas fa-envelope"></i> {{ settings.footer_email }}</li>
+                        <li><i class="fas fa-phone"></i> {{ settings.footer_phone }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 {{ 'Ministères THENELLA. Tous droits réservés.' if lang == 'fr' else 'THENELLA Ministries. All rights reserved.' }} | {{ 'Conçu avec ❤️ pour les amateurs de musique gospel' if lang == 'fr' else 'Designed with ❤️ for gospel music lovers' }}</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Music Player -->
+    <div class="music-player" id="music-player">
+        <div class="player-inner">
+            <div class="player-art"><img src="" alt=""></div>
+            <div class="player-track-info"><h4>Select a track</h4><span>THENELLA</span></div>
+            <div class="player-controls">
+                <button class="btn-prev" title="Previous"><i class="fas fa-step-backward"></i></button>
+                <button class="btn-play-pause" title="Play/Pause"><i class="fas fa-play"></i></button>
+                <button class="btn-next" title="Next"><i class="fas fa-step-forward"></i></button>
+            </div>
+            <div class="player-progress">
+                <span class="time time-current">0:00</span>
+                <div class="progress-bar-wrap"><div class="progress-bar-fill"></div></div>
+                <span class="time time-total">0:00</span>
+            </div>
+            <div class="player-volume">
+                <button class="btn-volume"><i class="fas fa-volume-up"></i></button>
+                <input type="range" class="volume-slider" min="0" max="100" value="70">
+            </div>
+            <button class="player-close" title="Close"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+{% endblock %}

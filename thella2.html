@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THENELLA - Gospel Artist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513; 
+            --secondary: #DAA520;
+            --accent: #4A6B22;
+            --light: #F8F5F0; 
+            --dark: #2C1810; 
+            --text: #333333;
+            --text-light: #777777;
+            --white: #FFFFFF;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            left: 0;
+            bottom: -5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .language-switcher {
+            display: flex;
+            margin-left: 30px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-weight: 500;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            color: var(--primary);
+            background-color: rgba(139, 69, 19, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 24, 16, 0.7), rgba(44, 24, 16, 0.7)),url('C:\Users\STABY\OneDrive\Desktop\development web static\Thella1\thella2\OIP (1).webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 1s;
+        }
+
+        .hero-btns {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 1.5s;
+        }
+
+        .hero-btns .btn {
+            margin: 0 10px;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+         .biography {
+            background-color: var(--white);
+        }
+
+        .bio-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .bio-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .bio-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .bio-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .bio-text {
+            flex: 1;
+        }
+
+        .bio-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .bio-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        /* Achievements Section */
+        .achievements {
+            background-color: var(--light);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .achievement-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+
+        /* Music Section */
+        .music {
+            background-color: var(--white);
+        }
+
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .music-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .music-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .music-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .music-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .music-card:hover .music-img img {
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            padding: 20px;
+        }
+
+        .music-info h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+
+        .music-info p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        /* Media Section */
+        .media {
+            background-color: var(--light);
+        }
+
+        .media-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: var(--white);
+            padding: 20px;
+        }
+
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+
+        .slider-btn {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-btn:hover {
+            background-color: var(--white);
+        }
+
+        /* Accounts Section */
+        .accounts {
+            background-color: var(--white);
+        }
+
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .account-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .account-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .account-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .youtube .account-icon {
+            color: #FF0000;
+        }
+
+        .tiktok .account-icon {
+            color: #000000;
+        }
+
+        .facebook .account-icon {
+            color: #1877F2;
+        }
+
+        .instagram .account-icon {
+            color: #E4405F;
+        }
+
+        .account-card h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .account-links {
+            list-style: none;
+        }
+
+        .account-links li {
+            margin-bottom: 10px;
+        }
+
+        .account-links a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .account-links a:hover {
+            color: var(--secondary);
+        }
+
+        .song-icon {
+            color: var(--secondary);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--light);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-col p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .bio-content {
+                flex-direction: column;
+            }
+            
+            .bio-img, .bio-text {
+                flex: none;
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .language-switcher {
+                margin-left: 0;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .slide img {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-btns .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+            }
+            
+            .slide img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">THEN<span>ELLA</span></a>
+                
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home" data-lang-en="Home" data-lang-fr="Accueil">Home</a></li>
+                    <li><a href="#biography" data-lang-en="Biography" data-lang-fr="Biographie">Biography</a></li>
+                    <li><a href="#achievements" data-lang-en="Achievements" data-lang-fr="Réalisations">Achievements</a></li>
+                    <li><a href="#music" data-lang-en="Music" data-lang-fr="Musique">Music</a></li>
+                    <li><a href="#media" data-lang-en="Gallery" data-lang-fr="Galerie">Gallery</a></li>
+                    <li><a href="#accounts" data-lang-en="Accounts" data-lang-fr="Comptes">Accounts</a></li>
+                    <li><a href="#contact" data-lang-en="Contact" data-lang-fr="Contact">Contact</a></li>
+                    
+                    <div class="language-switcher">
+                        <button class="lang-btn active" id="lang-en">EN</button>
+                        <button class="lang-btn" id="lang-fr">FR</button>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 data-lang-en="THENELLA" data-lang-fr="THENELLA">THENELLA</h1>
+            <p data-lang-en="Cameroonian Gospel Artist · Evangelist · Worship Leader" data-lang-fr="Artiste Gospel Camerounaise · Évangéliste · Leader de Louange">Cameroonian Gospel Artist · Evangelist · Worship Leader</p>
+            <p data-lang-en="Ministering through music that transforms hearts and glorifies God" data-lang-fr="Ministère par la musique qui transforme les cœurs et glorifie Dieu">Ministering through music that transforms hearts and glorifies God</p>
+            <div class="hero-btns">
+                <a href="#music" class="btn" data-lang-en="Listen to Music" data-lang-fr="Écouter la Musique">Listen to Music</a>
+                <a href="#contact" class="btn btn-outline" data-lang-en="Book for Ministry" data-lang-fr="Réserver pour le Ministère">Book for Ministry</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="biography" id="biography">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-en="Her Story" data-lang-fr="Son Histoire">Her Story</h2>
+            </div>
+            
+            <div class="bio-content">
+                <div class="bio-img">
+                    <img src="OIP.webp" alt="THENELLA">
+                </div>
+                
+                <div class="bio-text">
+                    <h3 data-lang-en="Bonog Thérèse Ornella" data-lang-fr="Bonog Thérèse Ornella">Bonog Thérèse Ornella</h3>
+                    <p data-lang-en="Thenella, born Bonog Thérèse Ornella, is a Cameroonian gospel singer, songwriter, worship leader, and evangelist. Her spiritual journey began in a Christian family where her father's miraculous healing experience profoundly shaped her faith." data-lang-fr="Thenella, née Bonog Thérèse Ornella, est une chanteuse de gospel, auteure-compositrice, leader de louange et évangéliste camerounaise. Son parcours spirituel a commencé dans une famille chrétienne où l'expérience de guérison miraculeuse de son père a profondément façonné sa foi.">
+                        Thenella, born Bonog Thérèse Ornella, is a Cameroonian gospel singer, songwriter, worship leader, and evangelist. Her spiritual journey began in a Christian family where her father's miraculous healing experience profoundly shaped her faith.
+                    </p>
+                    <p data-lang-en="For years, she served as lead vocalist and choir director at various churches, working with gospel groups like No Greater Love Family and Divine Harmonie. In September 2017, she was ordained as an evangelist, expanding her ministry beyond music to include preaching and outreach to vulnerable communities across Africa." data-lang-fr="Pendant des années, elle a servi comme vocaliste principale et directrice de chœur dans diverses églises, travaillant avec des groupes gospel comme No Greater Love Family et Divine Harmonie. En septembre 2017, elle a été ordonnée évangéliste, élargissant son ministère au-delà de la musique pour inclure la prédication et le soutien aux communautés vulnérables à travers l'Afrique.">
+                        For years, she served as lead vocalist and choir director at various churches, working with gospel groups like No Greater Love Family and Divine Harmonie. In September 2017, she was ordained as an evangelist, expanding her ministry beyond music to include preaching and outreach to vulnerable communities across Africa.
+                    </p>
+                    <p data-lang-en="Married to Dr. Philippe Totto Ndong, Thenella continues to minister through her music and gospel outreach from Douala, Cameroon, touching hearts with worship that bridges earthly experiences and divine encounters." data-lang-fr="Mariée au Dr. Philippe Totto Ndong, Thenella continue à exercer son ministère à travers sa musique et son évangélisation depuis Douala, Cameroun, touchant les cœurs avec une louange qui relie les expériences terrestres aux rencontres divines.">
+                        Married to Dr. Philippe Totto Ndong, Thenella continues to minister through her music and gospel outreach from Douala, Cameroon, touching hearts with worship that bridges earthly experiences and divine encounters.
+                    </p>
+                    <a href="#achievements" class="btn" data-lang-en="See Her Achievements" data-lang-fr="Voir Ses Réalisations">See Her Achievements</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements" id="achievements">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-en="Achievements & Awards" data-lang-fr="Réalisations & Récompenses">Achievements & Awards</h2>
+            </div>
+            
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 data-lang-en="Revelation of the Year" data-lang-fr="Révélation de l'Année">Revelation of the Year</h3>
+                    <p data-lang-en="Zamba Awards after the release of 'Cœur Nouveau' album" data-lang-fr">Zamba Awards après la sortie de l'album 'Cœur Nouveau'">Zamba Awards after the release of 'Cœur Nouveau' album</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 data-lang-en="Breakthrough Album" data-lang-fr="Album Révélation">Breakthrough Album</h3>
+                    <p data-lang-en="'Cœur Nouveau' (2019) with 10 inspirational tracks" data-lang-fr="'Cœur Nouveau' (2019) avec 10 titres inspirants">'Cœur Nouveau' (2019) with 10 inspirational tracks</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-hands-praying"></i>
+                    </div>
+                    <h3 data-lang-en="Ordained Evangelist" data-lang-fr="Évangéliste Ordonnée">Ordained Evangelist</h3>
+                    <p data-lang-en="Officially ordained in September 2017 for ministry work" data-lang-fr="Ordonnée officiellement en septembre 2017 pour le travail ministériel">Officially ordained in September 2017 for ministry work</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-record-vinyl"></i>
+                    </div>
+                    <h3 data-lang-en="Multiple Albums" data-lang-fr="Plusieurs Albums">Multiple Albums</h3>
+                    <p data-lang-en="Released several successful albums and singles since 2017" data-lang-fr="Plusieurs albums et singles à succès depuis 2017">Released several successful albums and singles since 2017</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section class="music" id="music">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-en="Discography" data-lang-fr="Discographie">Discography</h2>
+            </div>
+            
+            <div class="music-grid">
+                <div class="music-card">
+                    <div class="music-img">
+                        <img src="592x592bb.webp" alt="Cœur Nouveau Album">
+                    </div>
+                    <div class="music-info">
+                        <h3>Cœur Nouveau (2019)</h3>
+                        <p data-lang-en="Breakthrough album with 10 tracks of spiritual transformation" data-lang-fr="Album révélation avec 10 titres de transformation spirituelle">Breakthrough album with 10 tracks of spiritual transformation</p>
+                        <a href="https://music.apple.com/us/album/c%C5%93ur-nouveau/1454733587" target="_blank" class="btn">Listen Now</a>
+                    </div>
+                </div>
+                
+                <div class="music-card">
+                    <div class="music-img">
+                        <img src="592x592bb (1).webp" alt="Une Autre Dimension Album">
+                    </div>
+                    <div class="music-info">
+                        <h3>Une Autre Dimension (2024)</h3>
+                        <p data-lang-en="Latest album capturing praise, worship, and testimony themes" data-lang-fr="Dernier album capturant des thèmes de louange, d'adoration et de témoignage">Latest album capturing praise, worship, and testimony themes</p>
+                        <a href="https://music.apple.com/sn/album/une-autre-dimension/1786566551" target="_blank" class="btn">Listen Now</a>
+                    </div>
+                </div>
+                
+                <div class="music-card">
+                    <div class="music-img">
+                        <img src="592x592bb (2).webp" alt="Live Single">
+                    </div>
+                    <div class="music-info">
+                        <h3>Je te bénirai (Live) (2024)</h3>
+                        <p data-lang-en="Live single reflecting grateful worship and praise" data-lang-fr="Single en direct reflétant une adoration et une louange reconnaissantes">Live single reflecting grateful worship and praise</p>
+                        <a href="https://music.apple.com/gb/album/je-te-b%C3%A9nirai-live-single/1755108856" target="_blank" class="btn">Listen Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <section class="media" id="media">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-en="Gallery" data-lang-fr="Galerie">Gallery</h2>
+            </div>
+            
+            <div class="media-slider">
+                <div class="slider-container" id="slider-container">
+                    <div class="slide">
+                        <img src="OIP.webp" alt="THENELLA Ministry">
+                        <div class="slide-caption">
+                            <h3 data-lang-en="Ministry & Worship" data-lang-fr="Ministère & Adoration">Ministry & Worship</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <img src="download.webp">
+                        <div class="slide-caption">
+                            <h3 data-lang-en="Live Gospel Performances" data-lang-fr="Performances Gospel en Direct">Live Gospel Performances</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <img src="OIP (5).webp" alt="Recording Studio">
+                        <div class="slide-caption">
+                            <h3 data-lang-en="Music Creation Process" data-lang-fr="Processus de Création Musicale">Music Creation Process</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <img src="OIP (4).webp" alt="Community Outreach">
+                        <div class="slide-caption">
+                            <h3 data-lang-en="Community Outreach & Evangelism" data-lang-fr="Action Communautaire & Évangélisation">Community Outreach & Evangelism</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accounts Section -->
+    <section class="accounts" id="accounts">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-en="Social Media & Music" data-lang-fr="Réseaux Sociaux & Musique">Social Media & Music</h2>
+            </div>
+            
+            <div class="accounts-grid">
+                <div class="account-card youtube">
+                    <div class="account-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>YouTube</h3>
+                    <p data-lang-en="Official music videos and worship sessions" data-lang-fr="Vidéos musicales officielles et sessions de louange">Official music videos and worship sessions</p>
+                    <ul class="account-links">
+                        <li><a href="https://www.youtube.com/results?search_query=Thenella+Officiel" target="_blank"><i class="fas fa-play-circle song-icon"></i> <span data-lang-en="Ouvrier de la Moisson" data-lang-fr="Ouvrier de la Moisson">Ouvrier de la Moisson</span></a></li>
+                        <li><a href="https://www.youtube.com/results?search_query=Thenella+Officiel" target="_blank"><i class="fas fa-play-circle song-icon"></i> <span data-lang-en="Seigneur Mon Roi" data-lang-fr="Seigneur Mon Roi">Seigneur Mon Roi</span></a></li>
+                        <li><a href="https://www.youtube.com/results?search_query=Thenella+Officiel" target="_blank"><i class="fas fa-play-circle song-icon"></i> <span data-lang-en="La Gloire de l'Éternel" data-lang-fr="La Gloire de l'Éternel">La Gloire de l'Éternel</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="account-card tiktok">
+                    <div class="account-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3>TikTok</h3>
+                    <p data-lang-en="Short videos, behind the scenes, and worship clips" data-lang-fr="Vidéos courtes, coulisses et clips de louange">Short videos, behind the scenes, and worship clips</p>
+                    <ul class="account-links">
+                        <li><a href="https://www.tiktok.com/search?q=thenella%20gospel&t=1717758924714" target="_blank"><i class="fas fa-video song-icon"></i> <span data-lang-en="Worship Moments" data-lang-fr="Moments de Louange">Worship Moments</span></a></li>
+                        <li><a href="https://www.tiktok.com/search?q=thenella%20gospel&t=1717758924714" target="_blank"><i class="fas fa-video song-icon"></i> <span data-lang-en="Ministry Updates" data-lang-fr="Mises à Jour du Ministère">Ministry Updates</span></a></li>
+                        <li><a href="https://www.tiktok.com/search?q=thenella%20gospel&t=1717758924714" target="_blank"><i class="fas fa-video song-icon"></i> <span data-lang-en="Daily Inspiration" data-lang-fr="Inspiration Quotidienne">Daily Inspiration</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="account-card facebook">
+                    <div class="account-icon">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p data-lang-en="Thenella Ministries official page for updates and events" data-lang-fr="Page officielle de Thenella Ministries pour mises à jour et événements">Thenella Ministries official page for updates and events</p>
+                    <ul class="account-links">
+                        <li><a href="https://www.facebook.com/ImpactGospelMusic/posts/%F0%9D%97%96%F0%9D%97%98%F0%9D%97%9F%F0%9D%97%98%F0%9D%97%95%F0%9D%97%A5%F0%9D%97%94%F0%9D%97%A7%F0%9D%97%9C%F0%9D%97%A2%F0%9D%97%A1nous-vous-souhaitons-avec-%F0%9D%97%A7%F0%9D%97%B5%F0%9D%97%B2%F0%9D%97%BB%F0%9D%97%B2%F0%9D%97%B9%F0%9D%97%B9%F0%9D%97%AE-%F0%9D%97%A0%F0%9D%97%B6%F0%9D%97%BB%F0%9D%97%B6%F0%9D%98%80%F0%9D%98%81%F0%9D%97%BF%F0%9D%97%B6%F0%9D%97%B2%F0%9D%98%80-une-bonne-f%C3%AAte-du-trava/612163390183925/" target="_blank"><i class="fas fa-newspaper song-icon"></i> <span data-lang-en="Ministry Publications" data-lang-fr="Publications du Ministère">Ministry Publications</span></a></li>
+                        <li><a href="https://www.facebook.com/groups/285810984943150/posts/3129164240607796/" target="_blank"><i class="fas fa-users song-icon"></i> <span data-lang-en="Community Events" data-lang-fr="Événements Communautaires">Community Events</span></a></li>
+                        <li><a href="https://www.facebook.com/search/top?q=thenella%20gospel" target="_blank"><i class="fas fa-calendar-alt song-icon"></i> <span data-lang-en="Concert Announcements" data-lang-fr="Annonces de Concerts">Concert Announcements</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="account-card instagram">
+                    <div class="account-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p data-lang-en="Personal ministry moments and inspirational posts" data-lang-fr="Moments personnels du ministère et publications inspirantes">Personal ministry moments and inspirational posts</p>
+                    <ul class="account-links">
+                        <li><a href="https://www.instagram.com/explore/tags/thenella/" target="_blank"><i class="fas fa-hashtag song-icon"></i> <span>#ThenellaMinistries</span></a></li>
+                        <li><a href="https://www.instagram.com/explore/tags/thenella/" target="_blank"><i class="fas fa-hashtag song-icon"></i> <span>#CameroonianGospel</span></a></li>
+                        <li><a href="https://www.instagram.com/explore/tags/thenella/" target="_blank"><i class="fas fa-hashtag song-icon"></i> <span data-lang-en="#WorshipWithThenella" data-lang-fr="#WorshipWithThenella">#WorshipWithThenella</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-en="Contact & Booking" data-lang-fr="Contact & Réservation">Contact & Booking</h2>
+            </div>
+            
+            <div class="contact-form">
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="name" data-lang-en="Full Name" data-lang-fr="Nom Complet">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" data-lang-en="Email Address" data-lang-fr="Adresse Email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" data-lang-en="Phone Number" data-lang-fr="Numéro de Téléphone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-type" data-lang-en="Type of Event" data-lang-fr="Type d'Événement">Type of Event</label>
+                        <select id="event-type" required>
+                            <option value="" data-lang-en="Select an option" data-lang-fr="Sélectionnez une option">Select an option</option>
+                            <option value="concert" data-lang-en="Concert" data-lang-fr="Concert">Concert</option>
+                            <option value="church-service" data-lang-en="Church Service" data-lang-fr="Culte d'Église">Church Service</option>
+                            <option value="conference" data-lang-en="Conference" data-lang-fr="Conférence">Conference</option>
+                            <option value="wedding" data-lang-en="Wedding" data-lang-fr="Mariage">Wedding</option>
+                            <option value="other" data-lang-en="Other" data-lang-fr="Autre">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" data-lang-en="Message" data-lang-fr="Message">Message</label>
+                        <textarea id="message" rows="5" data-lang-en="Tell us about your event and how Thenella can minister..." data-lang-fr="Parlez-nous de votre événement et comment Thenella peut exercer son ministère...">Tell us about your event and how Thenella can minister...</textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" data-lang-en="Send Booking Request" data-lang-fr="Envoyer la Demande de Réservation">Send Booking Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3 data-lang-en="THENELLA Ministries" data-lang-fr="Ministères THENELLA">THENELLA Ministries</h3>
+                    <p data-lang-en="Spreading the gospel through music, worship, and evangelism. Based in Douala, Cameroon." data-lang-fr="Diffuser l'évangile par la musique, la louange et l'évangélisation. Basé à Douala, Cameroun.">Spreading the gospel through music, worship, and evangelism. Based in Douala, Cameroon.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/search/top?q=thenella%20gospel" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/explore/tags/thenella/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/results?search_query=Thenella+Officiel" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/search?q=thenella%20gospel&t=1717758924714" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 data-lang-en="Quick Links" data-lang-fr="Liens Rapides">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-lang-en="Home" data-lang-fr="Accueil">Home</a></li>
+                        <li><a href="#biography" data-lang-en="Biography" data-lang-fr="Biographie">Biography</a></li>
+                        <li><a href="#music" data-lang-en="Music" data-lang-fr="Musique">Music</a></li>
+                        <li><a href="#contact" data-lang-en="Contact" data-lang-fr="Contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 data-lang-en="Contact Info" data-lang-fr="Informations de Contact">Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-lang-en="Douala, Cameroon" data-lang-fr="Douala, Cameroun">Douala, Cameroon</span></li>
+                        <li><i class="fas fa-envelope"></i> contact@thenellaministries.com</li>
+                        <li><i class="fas fa-phone"></i> +237 XXX XXX XXX</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p data-lang-en="&copy; 2023 THENELLA Ministries. All rights reserved. | Designed with ❤️ for gospel music lovers" data-lang-fr="&copy; 2023 Ministères THENELLA. Tous droits réservés. | Conçu avec ❤️ pour les amateurs de musique gospel">&copy; 2023 THENELLA Ministries. All rights reserved. | Designed with ❤️ for gospel music lovers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const header = document.getElementById('header');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const langEnBtn = document.getElementById('lang-en');
+        const langFrBtn = document.getElementById('lang-fr');
+        const sliderContainer = document.getElementById('slider-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const bookingForm = document.getElementById('booking-form');
+        
+        // Current language
+        let currentLang = 'en';
+        
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile navigation toggle
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Image Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        // Function to update slider position
+        function updateSlider() {
+            sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        // Next slide
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        });
+        
+        // Previous slide
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        });
+        
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }, 5000);
+        
+        // Language Switching
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update language buttons
+            if (lang === 'en') {
+                langEnBtn.classList.add('active');
+                langFrBtn.classList.remove('active');
+            } else {
+                langFrBtn.classList.add('active');
+                langEnBtn.classList.remove('active');
+            }
+            
+            // Update all elements with data-lang attributes
+            document.querySelectorAll('[data-lang-en]').forEach(element => {
+                if (lang === 'en') {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = element.getAttribute('data-lang-en');
+                    } else {
+                        element.textContent = element.getAttribute('data-lang-en');
+                    }
+                } else {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = element.getAttribute('data-lang-fr');
+                    } else {
+                        element.textContent = element.getAttribute('data-lang-fr');
+                    }
+                }
+            });
+            
+            // Update select options
+            document.querySelectorAll('option[data-lang-en]').forEach(option => {
+                if (lang === 'en') {
+                    option.textContent = option.getAttribute('data-lang-en');
+                } else {
+                    option.textContent = option.getAttribute('data-lang-fr');
+                }
+            });
+        }
+        
+        // Language button events
+        langEnBtn.addEventListener('click', () => switchLanguage('en'));
+        langFrBtn.addEventListener('click', () => switchLanguage('fr'));
+        
+        // Form submission
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const eventType = document.getElementById('event-type').value;
+            
+            // Show success message
+            alert(currentLang === 'en' 
+                ? `Thank you ${name}! Your booking request for a ${eventType} has been received. We'll contact you at ${email} shortly.` 
+                : `Merci ${name}! Votre demande de réservation pour un ${eventType} a été reçue. Nous vous contacterons à ${email} sous peu.`);
+            
+            // Reset form
+            bookingForm.reset();
+            
+            // Reset the select options to correct language
+            const select = document.getElementById('event-type');
+            select.options[0].textContent = currentLang === 'en' ? 'Select an option' : 'Sélectionnez une option';
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Initialize the page with English language
+        document.addEventListener('DOMContentLoaded', () => {
+            switchLanguage('en');
+        });
+    </script>
+</body>
+</html>

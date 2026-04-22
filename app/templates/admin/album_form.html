@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block admin_content %}
+<div class="top-bar"><h1>{{ title }}</h1><div class="top-bar-actions"><a href="{{ url_for('admin.albums') }}"><i class="fas fa-arrow-left"></i> Back</a></div></div>
+<div class="card">
+    <form method="POST" enctype="multipart/form-data" class="admin-form">
+        {{ form.hidden_tag() }}
+        <div class="form-row">
+            <div><label>Album Title</label>{{ form.title() }}</div>
+            <div><label>Year</label>{{ form.year() }}</div>
+        </div>
+        <div class="form-row">
+            <div><label>Description (EN)</label>{{ form.description_en(rows=3) }}</div>
+            <div><label>Description (FR)</label>{{ form.description_fr(rows=3) }}</div>
+        </div>
+        <div class="form-row">
+            <div>
+                <label>Cover Image</label>
+                {% if item is defined and item.cover_image %}<br><img src="{{ url_for('static', filename='uploads/' + item.cover_image) }}" class="img-preview">{% endif %}
+                {{ form.cover_image() }}
+            </div>
+            <div>
+                <label>Audio File (MP3)</label>
+                {% if item is defined and item.audio_file %}<br><span style="color: var(--success);"><i class="fas fa-check-circle"></i> {{ item.audio_file }}</span>{% endif %}
+                {{ form.audio_file() }}
+            </div>
+        </div>
+        <label>Apple Music URL (fallback if no audio file)</label>{{ form.listen_url() }}
+        <label>Sort Order</label>{{ form.sort_order() }}
+        <button type="submit" class="btn-sm btn-primary"><i class="fas fa-save"></i> Save</button>
+    </form>
+</div>
+{% endblock %}

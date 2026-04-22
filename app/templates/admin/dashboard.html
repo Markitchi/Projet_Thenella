@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block admin_content %}
+<div class="top-bar"><h1>Dashboard</h1><div class="top-bar-actions"><a href="{{ url_for('main.index') }}" target="_blank"><i class="fas fa-external-link-alt"></i> View Site</a></div></div>
+<div class="stats-grid">
+    <div class="stat-card"><div class="stat-icon" style="color: var(--secondary);"><i class="fas fa-envelope"></i></div><div class="stat-number">{{ stats.total_bookings }}</div><div class="stat-label">Total Bookings</div></div>
+    <div class="stat-card"><div class="stat-icon" style="color: var(--danger);"><i class="fas fa-bell"></i></div><div class="stat-number">{{ stats.unread_bookings }}</div><div class="stat-label">Unread</div></div>
+    <div class="stat-card"><div class="stat-icon" style="color: var(--primary);"><i class="fas fa-compact-disc"></i></div><div class="stat-number">{{ stats.total_albums }}</div><div class="stat-label">Albums</div></div>
+    <div class="stat-card"><div class="stat-icon" style="color: var(--success);"><i class="fas fa-trophy"></i></div><div class="stat-number">{{ stats.total_achievements }}</div><div class="stat-label">Achievements</div></div>
+    <div class="stat-card"><div class="stat-icon" style="color: #9b59b6;"><i class="fas fa-images"></i></div><div class="stat-number">{{ stats.total_gallery }}</div><div class="stat-label">Gallery Images</div></div>
+</div>
+<div class="card">
+    <h3><i class="fas fa-clock"></i> Recent Booking Requests</h3>
+    {% if recent_bookings %}
+    <table><thead><tr><th>Name</th><th>Email</th><th>Event</th><th>Date</th><th>Status</th></tr></thead><tbody>
+        {% for b in recent_bookings %}
+        <tr><td>{{ b.name }}</td><td>{{ b.email }}</td><td>{{ b.event_type }}</td><td>{{ b.created_at.strftime('%Y-%m-%d %H:%M') }}</td><td><span class="badge {{ 'badge-success' if b.is_read else 'badge-warning' }}">{{ 'Read' if b.is_read else 'New' }}</span></td></tr>
+        {% endfor %}
+    </tbody></table>
+    {% else %}
+    <div class="empty-state"><i class="fas fa-inbox"></i><p>No booking requests yet</p></div>
+    {% endif %}
+</div>
+{% endblock %}

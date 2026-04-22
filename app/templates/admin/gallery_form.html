@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block admin_content %}
+<div class="top-bar"><h1>{{ title }}</h1><div class="top-bar-actions"><a href="{{ url_for('admin.gallery') }}"><i class="fas fa-arrow-left"></i> Back</a></div></div>
+<div class="card">
+    <form method="POST" enctype="multipart/form-data" class="admin-form">
+        {{ form.hidden_tag() }}
+        <label>Image</label>
+        {% if item is defined and item.image %}<br><img src="{{ url_for('static', filename='uploads/' + item.image) }}" class="img-preview">{% endif %}
+        {{ form.image() }}
+        <div class="form-row">
+            <div><label>Caption (EN)</label>{{ form.caption_en() }}</div>
+            <div><label>Caption (FR)</label>{{ form.caption_fr() }}</div>
+        </div>
+        <label>Sort Order</label>{{ form.sort_order() }}
+        <button type="submit" class="btn-sm btn-primary"><i class="fas fa-save"></i> Save</button>
+    </form>
+</div>
+{% endblock %}

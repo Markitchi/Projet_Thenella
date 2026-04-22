@@ -1,0 +1,31 @@
+{% extends "admin/base.html" %}
+{% block title %}Biography{% endblock %}
+{% block admin_content %}
+<div class="top-bar"><h1><i class="fas fa-user"></i> Biography</h1></div>
+<div class="card">
+    <form method="POST" enctype="multipart/form-data" class="admin-form">
+        {{ form.hidden_tag() }}
+        <div class="form-row">
+            <div><label>Full Name</label>{{ form.full_name() }}</div>
+            <div><label>Current Photo</label>{% if bio.image %}<br><img src="{{ url_for('static', filename='uploads/' + bio.image) }}" class="img-preview">{% endif %}{{ form.image() }}</div>
+        </div>
+        <div class="form-row">
+            <div><label>Section Title (EN)</label>{{ form.section_title_en() }}</div>
+            <div><label>Section Title (FR)</label>{{ form.section_title_fr() }}</div>
+        </div>
+        <div class="form-row">
+            <div><label>Paragraph 1 (EN)</label>{{ form.paragraph1_en(rows=4) }}</div>
+            <div><label>Paragraph 1 (FR)</label>{{ form.paragraph1_fr(rows=4) }}</div>
+        </div>
+        <div class="form-row">
+            <div><label>Paragraph 2 (EN)</label>{{ form.paragraph2_en(rows=4) }}</div>
+            <div><label>Paragraph 2 (FR)</label>{{ form.paragraph2_fr(rows=4) }}</div>
+        </div>
+        <div class="form-row">
+            <div><label>Paragraph 3 (EN)</label>{{ form.paragraph3_en(rows=4) }}</div>
+            <div><label>Paragraph 3 (FR)</label>{{ form.paragraph3_fr(rows=4) }}</div>
+        </div>
+        <button type="submit" class="btn-sm btn-primary"><i class="fas fa-save"></i> Save Biography</button>
+    </form>
+</div>
+{% endblock %}
